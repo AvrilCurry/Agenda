@@ -1,5 +1,4 @@
 language: go
-source: $GOPATH/src/github.com/AvrilCurry/Agenda/TestCobra/cmd
 
 go:
   - 1.7.x
