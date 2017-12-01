@@ -5,7 +5,7 @@ go:
   - 1.8.x
   - master
 
-go_import_path:  "Agenda/TestCobra/cmd"
+go_import_path:  AvrilCurry/Agenda/
 
 script:
   - go get -t ./...
