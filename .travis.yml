@@ -1,13 +1,11 @@
 language: go
 
 go:
-  - 1.7.x
   - 1.8.x
   - master
 
-go_import_path: github.com/AvrilCurry/Agenda/TestCobra/cmd
+go_import_path: $GOPATH/src/github.com/AvrilCurry/Agenda/TestCobra/cmd
 
 script:
-  - go get -v github.com/AvrilCurry/Agenda/TestCobra/cmd
   - go get -t ./...
   - go test -v ./...
