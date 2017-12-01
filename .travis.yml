@@ -4,6 +4,8 @@ go:
   - 1.7.x
   - 1.8.x
   - master
-  
+
+go_import_path: https://github.com/AvrilCurry/Agenda/TestCobra/agenda.go
+
 script:
   go test -v ./...
