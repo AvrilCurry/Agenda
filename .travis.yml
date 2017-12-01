@@ -6,4 +6,4 @@ go:
   - master
   
 script:
-  - go run agenda.go
+  go test -v ./...
