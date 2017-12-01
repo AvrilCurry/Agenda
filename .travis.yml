@@ -5,6 +5,8 @@ go:
   - 1.8.x
   - master
 
+go_import_path: github.com/AvrilCurry/Agenda/TestCobra/cmd
+
 script:
   - go get -v github.com/AvrilCurry/Agenda/TestCobra/cmd
   - go get -t ./...
