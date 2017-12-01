@@ -6,6 +6,6 @@ go:
   - master
 
 script:
-  - go get -v $GOPATH/src/github.com/AvrilCurry/Agenda/TestCobra/cmd
+  - go get -v github.com/AvrilCurry/Agenda/TestCobra/cmd
   - go get -t ./...
   - go test -v ./...
