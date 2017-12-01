@@ -6,5 +6,6 @@ go:
   - master
 
 script:
+  scons
+  - go get -t ./...
   - go test -v ./...
-  - go run agenda.go
