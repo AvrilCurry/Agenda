@@ -5,7 +5,8 @@ go:
   - 1.8.x
   - master
 
+go_import_path:  "Agenda/TestCobra/cmd"
+
 script:
-  scons
   - go get -t ./...
   - go test -v ./...
