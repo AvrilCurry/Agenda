@@ -15,7 +15,8 @@
 package cmd
 
 import (
-	"fmt"
+	"Agenda/TestCobra/entity"
+	"Agenda/TestCobra/otherFunc"
 	"log"
 	"os"
 	"regexp"
@@ -29,17 +30,26 @@ var cmCmd = &cobra.Command{
 	Short: "Meeting Create",
 	Long:  "Create a meeting by title, partcipators, startTime and endTime",
 	Run: func(cmd *cobra.Command, args []string) {
+		username, err := cmd.Flags().GetString("username")
 		title, err := cmd.Flags().GetString("title")
 		participator, err := cmd.Flags().GetStringSlice("participator")
 		startTime, err := cmd.Flags().GetString("startTime")
 		endTime, err := cmd.Flags().GetString("endTime")
 
+		var isUsernameMissing, isUsernameMissingValue = false, false
 		var isTitleMissing, isTitleMissingValue = false, false
 		var isParticipatorMissing, isParticipatorMissingValue = false, false
 		var isStartTimeMissing, isStartTimeMissingValue = false, false
 		var isEndTimeMissing = false
 
-		fmt.Println(participator)
+		//fmt.Println(participator)
+
+		if username == "Anonymous" {
+			isUsernameMissing = true
+		}
+		if username[0] == '-' && username[1] == '-' {
+			isUsernameMissingValue = true
+		}
 
 		if title == "Anonymous" {
 			isTitleMissing = true
@@ -66,66 +76,87 @@ var cmCmd = &cobra.Command{
 			isEndTimeMissing = true
 		}
 
-		if isTitleMissing {
-			log.Printf("Error: [Missing option\"--title\"] occur.\n")
+		fout, err := os.OpenFile("./log/error.log", os.O_RDWR|os.O_APPEND, os.ModePerm)
+		MyErrorLogger := log.New(fout, "[Error]: ", log.Ldate|log.Ltime)
+		CommandInfo := "Running at agenda.go cm."
+
+		if isUsernameMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option\"-u/--username\"] occur.\n\n", CommandInfo)
 			os.Exit(2)
-		} else if isTitleMissingValue {
-			log.Printf("Error: [\"--title\" doesn't own an argument value] occur.\n")
+		} else if isUsernameMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"-u/--username\" doesn't own an argument value] occur.\n\n", CommandInfo)
 			os.Exit(3)
-		} else if isParticipatorMissing {
-			log.Printf("Error: [Missing option\"--participator\"].\n")
+		} else if isTitleMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option\"--title\"] occur.\n\n", CommandInfo)
 			os.Exit(4)
-		} else if isParticipatorMissingValue {
-			log.Printf("Error: [\"--participator\" doesn't own an argument value] occur.\n")
+		} else if isTitleMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"--title\" doesn't own an argument value] occur.\n\n", CommandInfo)
 			os.Exit(5)
-		} else if isStartTimeMissing {
-			log.Printf("Error: [Missing option\"--startTime\"] occur.\n")
+		} else if isParticipatorMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option\"--participator\"].\n\n", CommandInfo)
 			os.Exit(6)
-		} else if isStartTimeMissingValue {
-			log.Printf("Error: [\"--startTime\" doesn't own an argument value] occur.\n")
+		} else if isParticipatorMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"--participator\" doesn't own an argument value] occur.\n\n", CommandInfo)
 			os.Exit(7)
-		} else if isEndTimeMissing {
-			log.Printf("Error: [Missing option\"--endTime\"] occur.\n")
+		} else if isStartTimeMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option\"--startTime\"] occur.\n\n", CommandInfo)
 			os.Exit(8)
+		} else if isStartTimeMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"--startTime\" doesn't own an argument value] occur.\n\n", CommandInfo)
+			os.Exit(9)
+		} else if isEndTimeMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option\"--endTime\"] occur.\n\n", CommandInfo)
+			os.Exit(10)
 		}
 
 		// Regular Expression
-		isStartTimeMatch, err := regexp.Match("([0-9|-])*", []byte(startTime))
-		isEndTimeMatch, err := regexp.Match("([0-9|-])*", []byte(endTime))
+		isStartTimeMatch, err := regexp.Match("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}", []byte(startTime))
+		isEndTimeMatch, err := regexp.Match("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}", []byte(endTime))
 
 		if !isStartTimeMatch {
-			log.Printf("Error: [%s doesn't match the rules] occur.\n", startTime)
-			configrules()
-			os.Exit(9)
+			MyErrorLogger.Printf("%s\n\tError: [startTime %s doesn't match the rules] occur.\n\n", CommandInfo, startTime)
+			otherFunc.Configrules()
+			os.Exit(11)
 		}
 		if !isEndTimeMatch {
-			log.Printf("Error: [%s doesn't match the rules] occur.\n", endTime)
-			configrules()
-			os.Exit(10)
+			MyErrorLogger.Printf("%s\n\tError: [endTime %s doesn't match the rules] occur.\n\n", CommandInfo, endTime)
+			otherFunc.Configrules()
+			os.Exit(12)
 		}
 		if startTime >= endTime {
-			log.Printf("Error: [%s shouldn't larger than %s] occur.\n", startTime, endTime)
-			os.Exit(11)
+			MyErrorLogger.Printf("%s\n\tError: [startTime %s shouldn't larger than endTime %s] occur.\n\n", CommandInfo, startTime, endTime)
+			os.Exit(13)
 		}
 
 		if err == nil {
 			// Todo Somethings
-			fmt.Println("Agenda Command is \"cm\".\ncalled with:")
-			fmt.Printf("\ttitle: %s\n\tparticipator: %s\n\tstartTime: %s\n\tendTime: %s\n", title, participator, startTime, endTime)
+			MyCorrectLogger := log.New(fout, "[Correct]: ", log.Ldate|log.Ltime)
+			MyWrongLogger := log.New(fout, "[Wrong]: ", log.Ldate|log.Ltime)
+			outputInfo := "Agenda Command is \"cm\".\n\tcalled with:\n\t\tusername: %s\n\t\ttitle: %s\n\t\tparticipator: %s\n\t\tstartTime: %s\n\t\tendTime: %s\n"
+
+			res, value, _ := entity.CreateMeeting(username, title, participator, startTime, endTime)
+			switch res {
+			case 0:
+				MyCorrectLogger.Printf(outputInfo+"\tOutput:\n\t\tUser \"%s\" Succeed to Create Meeting \"%s\"!\n\n", username, title, participator, startTime, endTime, username, title)
+			case 1:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tUser \"%s\" Fail to Create Meeting! User hasn't register yet!\n\n", username, title, participator, startTime, endTime, username)
+			case 2:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tUser \"%s\" Fail to Create Meeting! User hasn't log in yet!\n\n", username, title, participator, startTime, endTime, username)
+			case 3:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tUser \"%s\" Fail to Create Meeting! Meeting \"%s\" has been Created!\n\n", username, title, participator, startTime, endTime, username, title)
+			case 4:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tUser \"%s\" Fail to Create Meeting! %v hasn't register yet!\n\n", username, title, participator, startTime, endTime, username, value)
+			case 5:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tUser \"%s\" Fail to Create Meeting! %v can't not participate the meeting during this period!\n\n", username, title, participator, startTime, endTime, username, value)
+			}
 		}
 	},
-}
-
-func configrules() {
-	fmt.Printf("--startTime should be made up of the number between 0-9 and character \"-\".\n")
-	fmt.Printf("--endTime should be made up of the number between 0-9 and character \"-\".\n")
-	fmt.Printf("--email should be made up of the pattern like \"xxxx@xxx.com\".\n")
-	fmt.Printf("--telephone should begin as '1' and be made up of the number between 0-9 only have 11 numbers.\n")
 }
 
 func init() {
 	rootCmd.AddCommand(cmCmd)
 
+	cmCmd.Flags().StringP("username", "u", "Anonymous", "Username for cm")
 	cmCmd.Flags().StringP("title", "", "Anonymous", "Title for cm")
 	cmCmd.Flags().StringSliceP("participator", "", nil, "Participator for cm")
 	cmCmd.Flags().StringP("startTime", "", "Anonymous", "StartTime for cm")

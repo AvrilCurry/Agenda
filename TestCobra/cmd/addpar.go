@@ -15,7 +15,7 @@
 package cmd
 
 import (
-	"fmt"
+	"Agenda/TestCobra/entity"
 	"log"
 	"os"
 
@@ -28,11 +28,20 @@ var addparCmd = &cobra.Command{
 	Short: "Add participator into an existed meeting",
 	Long:  "Add participator into an existed meeting by title and participator",
 	Run: func(cmd *cobra.Command, args []string) {
+		username, err := cmd.Flags().GetString("username")
 		title, err := cmd.Flags().GetString("title")
 		participator, err := cmd.Flags().GetStringSlice("participator")
 
+		var isUsernameMissing, isUsernameMissingValue = false, false
 		var isTitleMissing, isTitleMissingValue = false, false
 		var isParticipatorMissing = false
+
+		if username == "Anonymous" {
+			isUsernameMissing = true
+		}
+		if username[0] == '-' && username[1] == '-' {
+			isUsernameMissingValue = true
+		}
 
 		if title == "Anonymous" {
 			isTitleMissing = true
@@ -45,28 +54,55 @@ var addparCmd = &cobra.Command{
 			isParticipatorMissing = true
 		}
 
-		if isTitleMissing {
-			log.Printf("Error: [Missing option \"--title\"] occur.\n")
+		fout, err := os.OpenFile("./log/error.log", os.O_RDWR|os.O_APPEND, os.ModePerm)
+		MyErrorLogger := log.New(fout, "[Error]: ", log.Ldate|log.Ltime)
+		CommandInfo := "Running at agenda.go addpar."
+
+		if isUsernameMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option \"-u/--username\"] occur.\n\n", CommandInfo)
 			os.Exit(2)
-		} else if isTitleMissingValue {
-			log.Printf("Error: [\"--title\" doesn't own an argument value] occur.\n")
+		} else if isUsernameMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"-u/--username\" doesn't own an argument value] occur.\n\n", CommandInfo)
 			os.Exit(3)
+		} else if isTitleMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option \"--title\"] occur.\n\n", CommandInfo)
+			os.Exit(4)
+		} else if isTitleMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"--title\" doesn't own an argument value] occur.\n\n", CommandInfo)
+			os.Exit(5)
 		} else if isParticipatorMissing {
 			/*
 				使用warning，是因为这对结果不会产生影响，这在增删参与者是允许的，但如果是创建会议时是不可以的，
 				因为至少得有一个人。
 			*/
-			log.Printf("Warning: [\"--participator\" own an empty argument value \"[]\"].\n")
+			MyWarningLogger := log.New(fout, "[Warning]: ", log.Ldate|log.Ltime)
+			MyWarningLogger.Printf("%s\n\tWarning: [\"--participator\" own an empty argument value \"[]\"].\n\n", CommandInfo)
 			os.Exit(0)
 		}
 
 		if err == nil {
 			// Todo Somethings
+			MyCorrectLogger := log.New(fout, "[Correct]: ", log.Ldate|log.Ltime)
+			MyWrongLogger := log.New(fout, "[Wrong]: ", log.Ldate|log.Ltime)
+			outputInfo := "Agenda Command is \"addpar\".\n\tcalled with:\n\t\tusername: %s\n\t\ttitle: %s\n\t\tparticipator: %s\n"
 
-			// Regular Expression
-
-			fmt.Println("Agenda Command is \"addpar\".\ncalled with:")
-			fmt.Printf("\ttitle: %s\n\tparticipator: %s\n", title, participator)
+			res, value, _ := entity.AddParticipator(username, title, participator)
+			switch res {
+			case 0:
+				MyCorrectLogger.Printf(outputInfo+"\tOutput:\n\t\tSucceed to Add Participator %v to the Meeting \"%s\"!\n\n", username, title, participator, participator, title)
+			case 1:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Add Participator %v to the Meeting \"%s\"! \"%s\" hasn't register yet!\n\n", username, title, participator, participator, title, username)
+			case 2:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Add Participator %v to the Meeting \"%s\"! \"%s\" hasn't log in yet!\n\n", username, title, participator, participator, title, username)
+			case 3:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Add Participator %v to the Meeting! \"%s\" hasn't been Created  yet!\n\n", username, title, participator, participator, title)
+			case 4:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Add Participator %v to the Meeting! \"%s\" has no right to add participator!\n\n", username, title, participator, participator, username)
+			case 5:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Add Participator %v to the Meeting! Participator %v hasn't register yet!\n\n", username, title, participator, participator, value)
+			case 6:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Add Participator %v to the Meeting! Participator %v can't not participate the meeting during this period!\n\n", username, title, participator, participator, value)
+			}
 		}
 	},
 }
@@ -74,6 +110,7 @@ var addparCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(addparCmd)
 
+	addparCmd.Flags().StringP("username", "u", "Anonymous", "Username for addpar")
 	addparCmd.Flags().StringP("title", "", "Anonymous", "Title for addpar")
 	addparCmd.Flags().StringSliceP("participator", "", nil, "Participator for addpar")
 

@@ -15,7 +15,9 @@
 package cmd
 
 import (
-	"fmt"
+	"Agenda/TestCobra/entity"
+	"log"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -26,25 +28,46 @@ var deleteUserCmd = &cobra.Command{
 	Short: "User delete",
 	Long:  "Delete an user by username",
 	Run: func(cmd *cobra.Command, args []string) {
-		/*username, err := cmd.Flags().GetString("username")
+		username, err := cmd.Flags().GetString("username")
+
+		var isUsernameMissing = false
 
 		if username == "Anonymous" {
-			log.Printf("Error: [Missing option \"--username\"] occur.\n")
+			isUsernameMissing = true
+		}
+
+		fout, err := os.OpenFile("./log/error.log", os.O_RDWR|os.O_APPEND, os.ModePerm)
+		MyErrorLogger := log.New(fout, "[Error]: ", log.Ldate|log.Ltime)
+		CommandInfo := "Running at agenda.go deleteUser."
+
+		if isUsernameMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option \"--username\"] occur.\n\n", CommandInfo)
 			os.Exit(2)
 		}
-		if err == nil {
-			fmt.Println("Agenda Command is \"delete\".\ncalled with:")
-			fmt.Printf("\tusername: %s\n", username)
-		}*/
 
-		// Todo Somethings
-		fmt.Printf("Agenda Command is \"deleteUser\".\n")
+		if err == nil {
+			MyCorrectLogger := log.New(fout, "[Correct]: ", log.Ldate|log.Ltime)
+			MyWrongLogger := log.New(fout, "[Wrong]: ", log.Ldate|log.Ltime)
+			outputInfo := "Agenda Command is \"deleteUser\".\n\tcalled with:\n\t\tusername: %s\n"
+
+			res, _ := entity.UserDelete(username)
+			switch res {
+			case 0:
+				MyCorrectLogger.Printf(outputInfo+"\tOutput:\n\t\tSucceed to Delete User \"%s\"!\n\n", username, username)
+			case 1:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Delete User \"%s\"! User hasn't register yet!\n\n", username, username)
+			case 2:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Delete User \"%s\"! User hasn't log in yet!\n\n", username, username)
+			}
+
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(deleteUserCmd)
 
+	deleteUserCmd.Flags().StringP("username", "u", "Anonymous", "Username for deleteUser")
 	//deleteUserCmd.Flags().StringP("username", "u", "Anonymous", "Username for delete")
 	// Here you will define your flags and configuration settings.
 

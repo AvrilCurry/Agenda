@@ -15,7 +15,7 @@
 package cmd
 
 import (
-	"fmt"
+	"Agenda/TestCobra/entity"
 	"log"
 	"os"
 
@@ -28,15 +28,57 @@ var cancelCmd = &cobra.Command{
 	Short: "Meeting cancel",
 	Long:  "Cancel an existed meeting by title",
 	Run: func(cmd *cobra.Command, args []string) {
+		username, err := cmd.Flags().GetString("username")
 		title, err := cmd.Flags().GetString("title")
 
+		var isUsernameMissing, isUsernameMissingValue = false, false
+		var isTitleMissing = false
+
+		if username == "Anonymous" {
+			isUsernameMissing = true
+		}
+		if username[0] == '-' && username[1] == '-' {
+			isUsernameMissingValue = true
+		}
+
 		if title == "Anonymous" {
-			log.Printf("Error: [Missing option \"--title\"] occur.\n")
+			isTitleMissing = true
+		}
+
+		fout, err := os.OpenFile("./log/error.log", os.O_RDWR|os.O_APPEND, os.ModePerm)
+		MyErrorLogger := log.New(fout, "[Error]: ", log.Ldate|log.Ltime)
+		CommandInfo := "Running at agenda.go cancel."
+
+		if isUsernameMissing {
+			MyErrorLogger.Printf("%s\n\tError: [Missing option \"-u/--username\"] occur.\n\n", CommandInfo)
 			os.Exit(2)
-		} else if err == nil {
+		} else if isUsernameMissingValue {
+			MyErrorLogger.Printf("%s\n\tError: [\"-u/--username\" doesn't own an argument value] occur.\n\n", CommandInfo)
+			os.Exit(3)
+		} else if isTitleMissing {
+			MyErrorLogger.Printf("%s\n\tError: Missing option \"--title\"] occur.\n\n", CommandInfo)
+			os.Exit(4)
+		}
+
+		if err == nil {
 			// Todo Somethings
-			fmt.Println("Agenda Command is \"cancel\".\ncalled with:")
-			fmt.Printf("\ttitle: %s\n", title)
+			MyCorrectLogger := log.New(fout, "[Correct]: ", log.Ldate|log.Ltime)
+			MyWrongLogger := log.New(fout, "[Wrong]: ", log.Ldate|log.Ltime)
+			outputInfo := "Agenda Command is \"cancel\".\n\tcalled with:\n\t\tusername: %s\n\t\ttitle: %s\n"
+
+			res, _ := entity.CancelMeeting(username, title)
+			switch res {
+			case 0:
+				MyCorrectLogger.Printf(outputInfo+"\tOutput:\n\t\tSucceed to Cancel the Meeting \"%s\"!\n\n", username, title, title)
+			case 1:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Cancel the Meeting! \"%s\" hasn't register yet!\n\n", username, title, username)
+			case 2:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Cancel the Meeting! \"%s\" hasn't log in yet!\n\n", username, title, username)
+			case 3:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Cancel the Meeting! \"%s\" hasn't created yet!\n\n", username, title, title)
+			case 4:
+				MyWrongLogger.Printf(outputInfo+"\tOutput:\n\t\tFail to Cancel the Meeting! \"%s\" has no right to cancel this meeting!\n\n", username, title, username)
+			}
 		}
 	},
 }
@@ -44,6 +86,7 @@ var cancelCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(cancelCmd)
 
+	cancelCmd.Flags().StringP("username", "u", "Anonymous", "Username for cancel")
 	cancelCmd.Flags().StringP("title", "", "Anonymous", "Title for cancel")
 	// Here you will define your flags and configuration settings.
 
