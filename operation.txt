@@ -1,0 +1,84 @@
+go run agenda.go register --username "Avril Lavigne" --password "Jamie Lanster" --email="Avril_lavigne@gmail.com" -t="144875135"
+go run agenda.go register --username "Steve Kerr" --password "Haly_Porter" --email="Steve_Kerr@gmail.com" -t="1468105135"
+go run agenda.go register --username "Kristen Stewart" --password "Iassc_Newtoen" --email="kristen_stewart@gmail.com" -t="115448646"
+go run agenda.go register --username "Stephen Curry" --password "Logo_Shot" --email="Stephen_Curry@gmail.com" -t="100024848"
+go run agenda.go register --username "Klay Thompson" --password "Klay_Shooter" --email="Klay_11_37@gmail.com" -t="1568963121"
+go run agenda.go register --username "Michelle Dockery" --password "DownTown_abbey" --email="Michelle_Dockery@gmail.com" -t="187784466"
+go run agenda.go register --username "Christan Anna" --password "Happy_Christamas" --email="Charistan_Anna@163.com" -t="1287445468"
+go run agenda.go register --username "Hason Jerry" --password "NotSuprise" --email="Hason_Jerry@qq.com" -t="113846889"
+go run agenda.go register --username "Taylor Swift" --password "Country_Music_Queen" --email="Taylor_Swift@gmail.com" -t="13536468754"
+go run agenda.go register --username "Larry Nance" --password "Slam_Dunk" --email="Larry_Nance@foxmail.com" -t="11846551223"
+
+
+
+go run agenda.go login -u "Swing" -p "Teferied"
+go run agenda.go login -u "Taylor Swift" -p "Teferied"
+go run agenda.go login -u "Taylor Swift" -p "Country_Music_Queen"
+go run agenda.go login -u "Avril Lavigne" -p "Jamie Lanster"
+go run agenda.go login -u "Kristen Stewart" -p "Iassc_Newtoen"
+go run agenda.go login -u "Christan Anna" -p "Happy_Christamas"
+go run agenda.go login -u "Larry Nance" -p "Slam_Dunk"
+
+
+go run agenda.go logout --username "Kate Perry"
+go run agenda.go logout --username "Stephen Curry"
+go run agenda.go logout --username "Larry Nance"
+
+
+go run agenda.go search --userName 
+
+
+go run agenda.go cm --username "Kristen Stewart" --title "Complicated" --participator "Kristen Stewart","Avril Lavigne","Steve Kerr" --startTime "2017-11-04 17:30" --endTime "2017-11-04 20:40"
+go run agenda.go cm --username "Taylor Swift" --title"Love Story" --participator "Taylor Swift","Hason Jerry","Stephen Curry" --startTime "2017-11-04 09:50" --endTime "2017-11-04 10:50"
+go run agenda.go cm --username "Klay Thompson" --title "Complicated", --participator "Klay Thompson","Steve Kerr","Avril Lavigne" --startTime "2017-11-04 07:10" --endTime "2017-11-04 07:40"
+go run agenda.go cm --username "Avril Lavigne" --title "Let it Go" --participator "Avril Lavigne","Kristen Stewart" --startTime "2017-11-05 14:15" --endTime "2017-11-05 14:45"
+go run agenda.go cm --username "Christan Anna" --title "Just For Fun" --participator "Christan Anna","Hason Jerry","Kristen Stewart" --startTime "2017-11-05 21:45" --endTime "2017-11-05 22:45"
+go run agenda.go cm --username "Avril Lavigne" --title "The Best Damn Things" --participator "Avril Lavigne","Kristen Stewart","Larry Nance" --startTime "2017-11-06 08:10"--endTime "2017-11-06 09:45"
+go run agenda.go cm --username "Taylor Swift" --title"Red" --participator "Taylor Swift","Stephen Curry","Larry Nance","Steve Kerr" --startTime "2017-11-05 18:00" --endTime "2017-11-05 18:25"
+
+go run agenda.go deleteUser --username "Larry Nance"
+go run agenda.go deleteUser --username "Larry"
+go run agenda.go deleteUser --username "Stephen Curry
+
+go run agenda.go addpar --username "Larry" --title "Red" --participator "Klay Thompson","Christan Anna"
+go run agenda.go addpar --username "Hason Jerry" --title "Red" --participator "Klay Thompson","Christan Anna"
+go run agenda.go addpar --username "Taylor Swift" --title "Red__" --participator "Klay Thompson","Christan Anna"
+go run agenda.go addpar --username "Avril Lavigne" --title "Red" --participator "Klay Thompson","Christan Anna"
+go run agenda.go addpar --username "Taylor Swift" --title "Red" --participator "Klay Thompson","Christan Anna"
+go run agenda.go addpar --username "Taylor Swift" --title "Red" --participator "Klay Thompson","Christan Anna","Jack Sparrow"
+
+
+go run agenda.go deletepar -u "Klay Thompson" --title "Complicated," --participator "Klay Thompson","Steve Kerr","Avril Lavigne"
+go run agenda.go deletepar -u "Klay Thompson" --title"Complicated," --participator "Steve Kerr","Avril Lavigne"
+go run agenda.go deletepar -u "Klay Thompson" --title"Complicated," --participator "Klay Thompson"
+
+go run agenda.go searchMeeting --username "Taylor Swift" --startTime "2017-11-03 01:01" --endTime "2017-11-06 01:01"
+
+go run agenda.go cancel --username "Taylor Swift" --title "Let it Go"
+go run agenda.go cancel --username "Avril Lavigne" --title "Let it Go"
+
+go run agenda.go quit --username "Avril Lavigne" --title "Red"
+go run agenda.go quit --username "Taylor Swift" --title "Red"
+go run agenda.go quit --username "Klay Thompson" --title "Red"
+
+
+go run agenda.go clear --username "Taylor Swift"
+
+go run agenda.go searchUser --username "Textas Roy" --information "Avril Lavigne","Michelle_Dockery@gmail.com","10002484885","Taylor Swift"
+go run agenda.go searchUser --username "Stephen Curry" --information "Avril Lavigne","Michelle_Dockery@gmail.com","10002484885","Taylor Swift"
+go run agenda.go searchUser --username "Avril Lavigne" --information "Avril Lavigne","Michelle_Dockery@gmail.com","10002484885","Taylor Swift"
+
+
+go run agenda.go help --addpar
+go run agenda.go help --cancel
+go run agenda.go help --clear
+go run agenda.go help --cm
+go run agenda.go help --deletepar
+go run agenda.go help --register
+go run agenda.go help --searchUser
+go run agenda.go help --searchMeeting
+go run agenda.go help --login
+go run agenda.go help --logout
+go run agenda.go help --quit
+go run agenda.go help --deleteUser
+go run agenda.go help
