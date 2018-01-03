@@ -1,0 +1,697 @@
+[Correct]: 2017/12/09 11:49:31 Agenda Command is "help".
+	called with: "--adpar"
+		Output:
+		agenda addpar --username username --title Title --participator [xxx, ...]
+
+gin
+		--logout
+		quit
+		--register
+		--searchMeeting
+		--searchUser
+
+
+
+ rules] occur.
+
+[Correct]: 2017/12/07 18:07:55 Agenda Command is "register".
+	called with:
+		username: Avril Lavigne
+		password: Jamie Lanster
+		e-mail: Avril_lavigne@gmail.com
+		telephone: 14487513512
+	Output:
+		Succeed to Create User "Avril Lavigne"!
+
+[Correct]: 2017/12/07 18:07:56 Agenda Command is "register".
+	called with:
+		username: Avril Lavigne
+		password: Jamie Lanster
+		e-mail: Avril_lavigne@gmail.com
+		telephone: 14487513512
+	[Output]:
+		Fail to Create User! User "Avril Lavigne" already exists!
+
+[Correct]: 2017/12/07 18:10:03 Agenda Command is "register".
+	called with:
+		username: Steve Kerr
+		password: Haly_Porter
+		e-mail: Steve_Kerr@gmail.com
+		telephone: 14681051352
+	Output:
+		Succeed to Create User "Steve Kerr"!
+
+[Correct]: 2017/12/07 18:11:07 Agenda Command is "register".
+	called with:
+		username: Kristen Stewart
+		password: Iassc_Newtoen
+		e-mail: kristen_stewart@gmail.com
+		telephone: 11544864612
+	Output:
+		Succeed to Create User "Kristen Stewart"!
+
+[Correct]: 2017/12/07 18:11:37 Agenda Command is "register".
+	called with:
+		username: Stephen Curry
+		password: Logo_Shot
+		e-mail: Stephen_Curry@gmail.com
+		telephone: 10002484885
+	Output:
+		Succeed to Create User "Stephen Curry"!
+
+[Error]: 2017/12/07 18:11:59 Running at agenda.go register.
+	Error: [Email  Klay_11_37@gmail.com doesn't match the rules] occur.
+
+[Error]: 2017/12/07 18:13:10 Running at agenda.go register.
+	Error: [Email  Klay1137@gmail.com doesn't match the rules] occur.
+
+[Error]: 2017/12/07 18:13:30 Running at agenda.go register.
+	Error: [Email  Klay_slin@gmail.com doesn't match the rules] occur.
+
+[Correct]: 2017/12/07 18:13:47 Agenda Command is "register".
+	called with:
+		username: Klay Thompson
+		password: Klay_Shooter
+		e-mail: Klay_11_37@gmail.com
+		telephone: 15689631217
+	Output:
+		Succeed to Create User "Klay Thompson"!
+
+[Error]: 2017/12/07 18:14:33 Running at agenda.go register.
+	Error: [Telephone 187784466 doesn't match the rules] occur.
+
+[Correct]: 2017/12/07 18:14:46 Agenda Command is "register".
+	called with:
+		username: Michelle Dockery
+		password: DownTown_abbey
+		e-mail: Michelle_Dockery@gmail.com
+		telephone: 18778446655
+	Output:
+		Succeed to Create User "Michelle Dockery"!
+
+[Correct]: 2017/12/07 18:15:15 Agenda Command is "register".
+	called with:
+		username: Christan Anna
+		password: Happy_Christamas
+		e-mail: Charistan_Anna@163.com
+		telephone: 12874454684
+	Output:
+		Succeed to Create User "Christan Anna"!
+
+[Correct]: 2017/12/07 18:15:34 Agenda Command is "register".
+	called with:
+		username: Hason Jerry
+		password: NotSuprise
+		e-mail: Hason_Jerry@qq.com
+		telephone: 11384688910
+	Output:
+		Succeed to Create User "Hason Jerry"!
+
+[Correct]: 2017/12/07 18:18:19 Agenda Command is "register".
+	called with:
+		username: Taylor Swift
+		password: Country_Music_Queen
+		e-mail: Taylor_Swift@gmail.com
+		telephone: 13536468754
+	Output:
+		Succeed to Create User "Taylor Swift"!
+
+[Correct]: 2017/12/07 18:18:29 Agenda Command is "register".
+	called with:
+		username: Larry Nance
+		password: Slam_Dunk
+		e-mail: Larry_Nance@foxmail.com
+		telephone: 11846551223
+	Output:
+		Succeed to Create User "Larry Nance"!
+
+[Wrong]: 2017/12/07 18:40:51 Agenda Command is "login".
+	called with:
+		username: Swing
+		password: Teferied
+	Output:
+		Fail to Login in "Swing"! User doesn't exist!
+
+[Wrong]: 2017/12/07 18:40:57 Agenda Command is "login".
+	called with:
+		username: Taylor Swift
+		password: Teferied
+	Output:
+		Fail to Login in "Taylor Swift"! The password doesn't match the username!
+
+[Correct]: 2017/12/07 18:41:00 Agenda Command is "login".
+	called with:
+		username: Taylor Swift
+		password: Country_Music_Queen
+	Output:
+		Succeed to Log in "Taylor Swift"!
+
+[Wrong]: 2017/12/07 18:41:02 Agenda Command is "login".
+	called with:
+		username: Taylor Swift
+		password: Country_Music_Queen
+	Output:
+		Fail to Login in "Taylor Swift"! User has already log in!
+
+[Correct]: 2017/12/07 18:45:46 Agenda Command is "login".
+	called with:
+		username: Avril Lavigne
+		password: Jamie Lanster
+	Output:
+		Succeed to Log in "Avril Lavigne"!
+
+[Wrong]: 2017/12/07 18:45:52 Agenda Command is "login".
+	called with:
+		username: Avril Lavigne
+		password: Jamie Lanster
+	Output:
+		Fail to Login in "Avril Lavigne"! User has already log in!
+
+[Correct]: 2017/12/07 18:46:02 Agenda Command is "login".
+	called with:
+		username: Christan Anna
+		password: Happy_Christamas
+	Output:
+		Succeed to Log in "Christan Anna"!
+
+[Wrong]: 2017/12/07 18:46:14 Agenda Command is "login".
+	called with:
+		username: Kristen Stewart
+		password: Iassc_Newtoenn
+	Output:
+		Fail to Login in "Kristen Stewart"! The password doesn't match the username!
+
+[Correct]: 2017/12/07 18:47:02 Agenda Command is "login".
+	called with:
+		username: Kristen Stewart
+		password: Iassc_Newtoen
+	Output:
+		Succeed to Log in "Kristen Stewart"!
+
+[Correct]: 2017/12/07 18:48:41 Agenda Command is "login".
+	called with:
+		username: Larry Nance
+		password: Slam_Dunk
+	Output:
+		Succeed to Log in "Larry Nance"!
+
+[Wrong]: 2017/12/07 19:02:03 Agenda Command is "logout".
+	called with:
+		username: Kate Perry
+	Output:
+		Fail to Log out "Kate Perry"! User hasn't Register yet!
+
+[Wrong]: 2017/12/07 19:02:11 Agenda Command is "logout".
+	called with:
+		username: Stephen Curry
+	Output:
+		Fail to Log out "Stephen Curry"! User hasn't Loged in yet!
+
+[Correct]: 2017/12/07 19:02:19 Agenda Command is "logout".
+	called with:
+		username: Larry Nance
+	Output:
+		Succeed to Log out "Larry Nance"!
+
+[Error]: 2017/12/07 19:57:32 Running at agenda.go cm.
+	Error: [startTime 2017-11-4 17:30 doesn't match the rules] occur.
+
+[Error]: 2017/12/07 19:57:52 Running at agenda.go cm.
+	Error: [endTime 2017-1-04 20:40 doesn't match the rules] occur.
+
+[Error]: 2017/12/07 19:58:05 Running at agenda.go cm.
+	Error: [startTime 2017-11-04 17:30 shouldn't larger than endTime 2017-11-03 20:40] occur.
+
+[Wrong]: 2017/12/07 20:01:35 Agenda Command is "cm".
+	called with:
+		username: Jet Kid
+		title: Complicated,
+		participator: [Jet Kid Steve Kerr Jamon Green]
+		startTime: 2017-11-04 17:30
+		endTime: 2017-11-04 20:40
+	Output:
+		User "Jet Kid" Fail to Create Meeting! User hasn't register yet!
+
+[Wrong]: 2017/12/07 20:02:24 Agenda Command is "cm".
+	called with:
+		username: Klay Thompson
+		title: Complicated,
+		participator: [Jet Kid Steve Kerr Jamon Green]
+		startTime: 2017-11-04 17:30
+		endTime: 2017-11-04 20:40
+	Output:
+		User "Klay Thompson" Fail to Create Meeting! User hasn't log in yet!
+
+[Wrong]: 2017/12/07 20:03:57 Agenda Command is "cm".
+	called with:
+		username: Kristen Stewart
+		title: Complicated,
+		participator: [Kristen Stewart Jet Kid Steve Kerr Jamon Green]
+		startTime: 2017-11-04 17:30
+		endTime: 2017-11-04 20:40
+	Output:
+		User "Kristen Stewart" Fail to Create Meeting! [Jet Kid Jamon Green] hasn't register yet!
+		
+
+[Correct]: 2017/12/07 20:07:30 Agenda Command is "cm".
+	called with:
+		username: Kristen Stewart
+		title: Complicated
+		participator: [Kristen Stewart Avril Lavigne Steve Kerr]
+		startTime: 2017-11-04 17:30
+		endTime: 2017-11-04 20:40
+	Output:
+		User "Kristen Stewart" Succeed to Create Meeting "Complicated"!
+
+[Wrong]: 2017/12/07 20:08:55 Agenda Command is "cm".
+	called with:
+		username: Taylor Swift
+		title: Love Story
+		participator: [Taylor Swift Avril Lavigne Stephen Curry]
+		startTime: 2017-11-04 17:50
+		endTime: 2017-11-04 20:30
+	Output:
+		User "Taylor Swift" Fail to Create Meeting! [Avril Lavigne Complicated 2017-11-04 17:30 2017-11-04 20:40] can't not participate the meeting during this period!
+
+[Correct]: 2017/12/07 20:10:26 Agenda Command is "cm".
+	called with:
+		username: Taylor Swift
+		title: Love Story
+		participator: [Taylor Swift Hason Jerry Stephen Curry]
+		startTime: 2017-11-04 09:50
+		endTime: 2017-11-04 10:50
+	Output:
+		User "Taylor Swift" Succeed to Create Meeting "Love Story"!
+
+[Wrong]: 2017/12/07 20:11:10 Agenda Command is "cm".
+	called with:
+		username: Taylor Swift
+		title: Love Story
+		participator: [Taylor Swift Hason Jerry Stephen Curry]
+		startTime: 2017-11-05 09:50
+		endTime: 2017-11-05 10:50
+	Output:
+		User "Taylor Swift" Fail to Create Meeting! Meeting "Love Story" has been Created!
+
+[Wrong]: 2017/12/07 20:14:50 Agenda Command is "cm".
+	called with:
+		username: Klay Thompson
+		title: Complicated,
+		participator: [Klay Thompson Steve Kerr Avril Lavigne]
+		startTime: 2017-11-04 16:30
+		endTime: 2017-11-04 17:40
+	Output:
+		User "Klay Thompson" Fail to Create Meeting! [Steve Kerr Complicated 2017-11-04 17:30 2017-11-04 20:40 Avril Lavigne Complicated 2017-11-04 17:30 2017-11-04 20:40] can't not participate the meeting during this period!
+
+[Error]: 2017/12/07 20:15:12 Running at agenda.go cm.
+	Error: [startTime 2017-11-04 7:10 doesn't match the rules] occur.
+
+[Correct]: 2017/12/07 20:15:21 Agenda Command is "cm".
+	called with:
+		username: Klay Thompson
+		title: Complicated,
+		participator: [Klay Thompson Steve Kerr Avril Lavigne]
+		startTime: 2017-11-04 07:10
+		endTime: 2017-11-04 07:40
+	Output:
+		User "Klay Thompson" Succeed to Create Meeting "Complicated,"!
+
+[Wrong]: 2017/12/07 20:15:42 Agenda Command is "cm".
+	called with:
+		username: Michelle Dockery
+		title: Avril Lavigne Chasing,
+		participator: [Michelle Dockery Ransole Bell Stephen Curry]
+		startTime: 2017-11-03 12:00
+		endTime: 2017-11-03 14:00
+	Output:
+		User "Michelle Dockery" Fail to Create Meeting! User hasn't log in yet!
+
+[Wrong]: 2017/12/07 20:16:08 Agenda Command is "cm".
+	called with:
+		username: Michelle Dockery
+		title: Avril Lavigne Chasing,
+		participator: [Michelle Dockery Ransole Bell Stephen Curry]
+		startTime: 2017-11-03 12:00
+		endTime: 2017-11-03 14:00
+	Output:
+		User "Michelle Dockery" Fail to Create Meeting! [Ransole Bell] hasn't register yet!
+
+[Wrong]: 2017/12/07 20:17:00 Agenda Command is "cm".
+	called with:
+		username: Avril
+		title: Let it Go,
+		participator: [Avril Lavigne Kristen Stewart]
+		startTime: 2017-11-05 14:15
+		endTime: 2017-11-05 14:45
+	Output:
+		User "Avril" Fail to Create Meeting! User hasn't register yet!
+
+[Correct]: 2017/12/07 20:17:39 Agenda Command is "cm".
+	called with:
+		username: Avril Lavigne
+		title: Let it Go,
+		participator: [Avril Lavigne Kristen Stewart]
+		startTime: 2017-11-05 14:15
+		endTime: 2017-11-05 14:45
+	Output:
+		User "Avril Lavigne" Succeed to Create Meeting "Let it Go,"!
+
+[Correct]: 2017/12/07 20:22:06 Agenda Command is "cm".
+	called with:
+		username: Christan Anna
+		title: Just For Fun,
+		participator: [Christan Anna Hason Jerry Kristen Stewart]
+		startTime: 2017-11-05 21:45
+		endTime: 2017-11-05 22:45
+	Output:
+		User "Christan Anna" Succeed to Create Meeting "Just For Fun,"!
+
+[Wrong]: 2017/12/07 20:23:49 Agenda Command is "cm".
+	called with:
+		username: Avril Lavigne
+		title: The Best Damn Things,
+		participator: [Avril Lavigne Kristen Stewart Larry Nance]
+		startTime: 2017-11-05 08:10
+		endTime: 2017-11-06 09:45
+	Output:
+		User "Avril Lavigne" Fail to Create Meeting! [Avril Lavigne Let it Go, 2017-11-05 14:15 2017-11-05 14:45 Kristen Stewart Let it Go, 2017-11-05 14:15 2017-11-05 14:45 Kristen Stewart Just For Fun, 2017-11-05 21:45 2017-11-05 22:45] can't not participate the meeting during this period!
+
+[Correct]: 2017/12/07 20:24:21 Agenda Command is "cm".
+	called with:
+		username: Avril Lavigne
+		title: The Best Damn Things,
+		participator: [Avril Lavigne Kristen Stewart Larry Nance]
+		startTime: 2017-11-06 08:10
+		endTime: 2017-11-06 09:45
+	Output:
+		User "Avril Lavigne" Succeed to Create Meeting "The Best Damn Things,"!
+
+[Correct]: 2017/12/07 20:26:04 Agenda Command is "cm".
+	called with:
+		username: Taylor Swift
+		title: Red,
+		participator: [Taylor Swift Stephen Curry Larry Nance Steve Kerr]
+		startTime: 2017-11-05 18:00
+		endTime: 2017-11-05 18:25
+	Output:
+		User "Taylor Swift" Succeed to Create Meeting "Red,"!
+
+[Wrong]: 2017/12/07 20:29:41 Agenda Command is "deleteUser".
+	called with:
+		username: Larry Nance
+	Output:
+		Fail to Delete User "Larry Nance"! User hasn't log in yet!
+
+[Wrong]: 2017/12/07 20:30:06 Agenda Command is "deleteUser".
+	called with:
+		username: Larry
+	Output:
+		Fail to Delete User "Larry"! User hasn't register yet!
+
+[Wrong]: 2017/12/07 20:30:14 Agenda Command is "deleteUser".
+	called with:
+		username: Stephen Curry
+	Output:
+		Fail to Delete User "Stephen Curry"! User hasn't log in yet!
+
+[Wrong]: 2017/12/07 20:31:42 Agenda Command is "deleteUser".
+	called with:
+		username: Stephen Curry
+	Output:
+		Fail to Delete User "Stephen Curry"! User hasn't log in yet!
+
+[Correct]: 2017/12/07 20:31:56 Agenda Command is "deleteUser".
+	called with:
+		username: Larry Nance
+	Output:
+		Succeed to Delete User "Larry Nance"!
+
+[Wrong]: 2017/12/07 20:51:10 Agenda Command is "addpar".
+	called with:
+		username: Larry
+		title: Red
+		participator: [Christan Anna Klay Thompson]
+tOutput:
+		Fail to Add Participator [Christan Anna Klay Thompson] to the Meeting "Red"! "Larry" hasn't register yet!
+
+[Wrong]: 2017/12/07 20:52:01 Agenda Command is "addpar".
+	called with:
+		username: Larry
+		title: Red
+		participator: [Christan Anna Klay Thompson]
+	Output:
+		Fail to Add Participator [Christan Anna Klay Thompson] to the Meeting "Red"! "Larry" hasn't register yet!
+
+[Wrong]: 2017/12/07 20:53:15 Agenda Command is "addpar".
+	called with:
+		username: Hason Jerry
+		title: Red
+		participator: [Christan Anna Klay Thompson]
+	Output:
+		Fail to Add Participator [Christan Anna Klay Thompson] to the Meeting "Red"! "Hason Jerry" hasn't log in yet!
+
+[Wrong]: 2017/12/07 20:53:59 Agenda Command is "addpar".
+	called with:
+		username: Taylor Swift
+		title: Red__
+		participator: [Christan Anna Klay Thompson]
+	Output:
+		Fail to Add Participator [Christan Anna Klay Thompson] to the Meeting! "Red__" hasn't been Created  yet!
+
+[Wrong]: 2017/12/07 20:54:56 Agenda Command is "addpar".
+	called with:
+		username: Avril Lavigne
+		title: Red
+		participator: [Christan Anna Klay Thompson]
+	Output:
+		Fail to Add Participator [Christan Anna Klay Thompson] to the Meeting! "Avril Lavigne" has no right to add participator!
+
+[Wrong]: 2017/12/07 20:57:29 Agenda Command is "addpar".
+	called with:
+		username: Taylor Swift
+		title: Red
+		participator: [Christan Anna Jack Sparrow Klay Thompson]
+	Output:
+		Fail to Add Participator [Jack Sparrow] to the Meeting! Participator %!v(MISSING) hasn't register yet!
+
+[Correct]: 2017/12/07 20:59:04 Agenda Command is "addpar".
+	called with:
+		username: Taylor Swift
+		title: Red
+		participator: [Christan Anna Klay Thompson]
+	Output:
+		Succeed to Add Participator [Christan Anna Klay Thompson] to the Meeting "Red"!
+
+[Wrong]: 2017/12/07 20:59:10 Agenda Command is "addpar".
+	called with:
+		username: Taylor Swift
+		title: Red
+		participator: [Christan Anna Jack Sparrow Klay Thompson]
+	Output:
+		Fail to Add Participator [Christan Anna Jack Sparrow Klay Thompson] to the Meeting! Participator [Jack Sparrow] hasn't register yet!
+
+[Wrong]: 2017/12/07 21:15:23 Agenda Command is "addpar".
+	called with:
+		username: Taylor Swift
+		title: Red
+		participator: [Christan Anna Jack Sparrow Klay Thompson]
+	Output:
+		Fail to Add Participator [Christan Anna Jack Sparrow Klay Thompson] to the Meeting! Participator [Jack Sparrow] hasn't register yet!
+
+[Wrong]: 2017/12/07 21:16:39 Agenda Command is "deletepar".
+	called with:
+		username: Klay Thompson
+		title: Complicated,
+		participator: [Klay Thompson Steve Kerr Avril Lavigne]
+	Output:
+		Fail to Delete Participator [Klay Thompson Steve Kerr Avril Lavigne] from the Meetingg! "Klay Thompson" is the organizer of this meeting and the number of the meeting is greater than 1!
+
+[Correct]: 2017/12/07 21:16:54 Agenda Command is "deletepar".
+	called with:
+		username: Klay Thompson
+		title: Complicated,
+		participator: [Steve Kerr Avril Lavigne]
+	Output:
+		Succeed to Delete Participator [Steve Kerr Avril Lavigne] from the Meeting "Complicated,"!
+
+[Correct]: 2017/12/07 21:18:21 Agenda Command is "deletepar".
+	called with:
+		username: Klay Thompson
+		title: Complicated,
+		participator: [Klay Thompson]
+	Output:
+		Succeed to Delete Participator [Klay Thompson] from the Meeting "Complicated,"!
+
+[Error]: 2017/12/07 21:28:50 Running at agenda.go searchMeeting.
+	Error: [startTime 2017-11-03 doesn't match the rules] occur.
+
+[Error]: 2017/12/07 21:29:34 Running at agenda.go searchMeeting.
+	Error: [startTime 2017-11-03 doesn't match the rules] occur.
+
+[Wrong]: 2017/12/07 21:30:34 Agenda Command is "searchMeeting".
+	called with:
+		username: Taylor
+		startTime: 2017-11-03 01:01
+		endTime: 2017-11-06 01:01
+	Output:
+		Fail to Search the Meeting! "Taylor" hasn't register yet!
+
+[Correct]: 2017/12/07 21:30:54 Agenda Command is "searchMeeting".
+	called with:
+		username: Taylor Swift
+		startTime: 2017-11-03 01:01
+		endTime: 2017-11-06 01:01
+	Output:
+		Succeed to Search the Meeting!
+		[{Love Story [Taylor Swift Stephen Curry Steve Kerr] 2017-11-04 09:50 2017-11-04 10:50} {Red [Taylor Swift Stephen Curry Steve Kerr Christan Anna Klay Thompson] 2017-11-05 18:00 2017-11-05 18:25}]
+
+[Wrong]: 2017/12/07 21:46:40 Agenda Command is "cancel".
+	called with:
+		username: Taylor Swift
+		title: Let it Go
+	Output:
+		Fail to Cancel the Meeting! "Taylor Swift" has no right to cancel this meeting!
+
+[Correct]: 2017/12/07 21:46:54 Agenda Command is "cancel".
+	called with:
+		username: Avril Lavigne
+		title: Let it Go
+	Output:
+		Succeed to Cancel the Meeting "Let it Go"!
+
+[Wrong]: 2017/12/07 21:57:16 Agenda Command is "quit".
+	called with:
+		username: Avril Lavigne
+		title: Red
+	Output:
+		Fail to Quit the Meeting! "Avril Lavigne" hasn't participate this meeting yet!
+
+[Wrong]: 2017/12/07 21:57:30 Agenda Command is "quit".
+	called with:
+		username: Taylor Swift
+		title: Red
+	Output:
+		Fail to Quit the Meeting! "Taylor Swift" is the organizer of this meeting and the number of the meeting is greater than 1!
+
+[Correct]: 2017/12/07 21:57:42 Agenda Command is "quit".
+	called with:
+		username: Klay Thompson
+		title: Red
+	Output:
+		Succeed to Quit the Meeting "Red"!
+
+[Correct]: 2017/12/07 22:04:54 Agenda Command is "clear".
+	called with:
+		username: Taylor Swift
+	Output:
+		Succeed to Clear all Meetings created by "Taylor Swift"!
+
+[Wrong]: 2017/12/09 11:43:46 Agenda Command is "search".
+	called with:
+		username: Textas Roy
+		information: [Avril Lavigne Michelle_Dockery@gmail.com 10002484885 Taylor Swift]
+	Output:
+		Fail to search! User "Textas Roy" hasn't register yet!
+
+[Wrong]: 2017/12/09 11:45:28 Agenda Command is "search".
+	called with:
+		username: Stephen Curry
+		information: [Avril Lavigne Michelle_Dockery@gmail.com 10002484885 Taylor Swift]
+	Output:
+		Fail to search! User "Stephen Curry" hasn't log in yet!
+
+[Correct]: 2017/12/09 11:46:13 Agenda Command is "search".
+	called with:
+		username: Avril Lavigne
+		information: [Avril Lavigne Michelle_Dockery@gmail.com 10002484885 Taylor Swift]
+	Output:
+		Succeed to Search!
+			User0: map[Username:Avril Lavigne Email:Avril_lavigne@gmail.com Telephone:14487513512]
+			User1: map[Username:Stephen Curry Email:Stephen_Curry@gmail.com Telephone:10002484885]
+			User2: map[Username:Michelle Dockery Email:Michelle_Dockery@gmail.com Telephone:18778446655]
+			User3: map[Username:Taylor Swift Email:Taylor_Swift@gmail.com Telephone:13536468754]
+
+[Wrong]: 2017/12/09 11:46:49 Agenda Command is "search".
+	called with:
+		username: Stephen Curry
+		information: [Avril Lavigne Michelle_Dockery@gmail.com 10002484885 Taylor Swift]
+	Output:
+		Fail to search! User "Stephen Curry" hasn't log in yet!
+
+[Correct]: 2017/12/09 11:52:14 Agenda Command is "help".
+	called with: "--adpar"
+		Output:
+			agenda addpar --username username --title Title --participator [xxx, ...]
+
+[Correct]: 2017/12/09 11:52:32 Agenda Command is "help".
+	called with: "--cancel"
+		Output:
+			agenda cancel --username --title Title
+
+[Correct]: 2017/12/09 11:53:05 Agenda Command is "help".
+	called with: "--clear"
+		Output:
+			agenda clear --username username
+
+[Correct]: 2017/12/09 11:53:09 Agenda Command is "help".
+	called with: "--cm"
+		Output:
+			agenda cm --username username --title Title --participator [xxx,xxx, ...] --startTime StartTime --endTime EndTime
+
+[Correct]: 2017/12/09 11:53:19 Agenda Command is "help".
+	called with: "--deletepar"
+		Output:
+			agenda deletepar --username username --title Title --participator [xxx, ...]
+
+[Correct]: 2017/12/09 11:53:25 Agenda Command is "help".
+	called with: "--register"
+		Output:
+			agenda register -u/-username Username -p/--password Password -e/--email Email -t/--telephone Telephone
+
+[Correct]: 2017/12/09 11:53:31 Agenda Command is "help".
+	called with: "--searchUser"
+		Output:
+			agenda searchUser -u/--username username -i/--information [Username/Email/Telephone]
+
+[Correct]: 2017/12/09 11:53:35 Agenda Command is "help".
+	called with: "--searchMeeting"
+		Output:
+			agenda searchMeeting --username username --startTime StartTime --endTime EndTime
+
+[Correct]: 2017/12/09 11:54:50 Agenda Command is "help".
+	called with: "--login"
+		Output:
+			agenda login -u/--username Username -p/--password Passwor
+
+[Correct]: 2017/12/09 11:54:54 Agenda Command is "help".
+	called with: "--logout"
+		Output:
+			agenda logout --username username
+
+[Correct]: 2017/12/09 11:55:04 Agenda Command is "help".
+	called with: "--quit"
+		Output:
+			agenda quit --username username --title Title
+
+[Correct]: 2017/12/09 11:55:28 Agenda Command is "help".
+	called with: "--deleteUser"
+		Output:
+			agenda deleteUser --username username
+
+[Correct]: 2017/12/09 11:59:23 Agenda Command is "help".
+	called with: "no options"
+		Output:	
+			--addpar
+			--cancel
+			--clear
+			--cm
+			--deletepar
+			--deleteUser
+			--login
+			--logout
+			--quit
+			--register
+			--searchMeeting
+			--searchUser
+
+
