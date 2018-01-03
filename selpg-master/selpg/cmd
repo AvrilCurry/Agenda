@@ -1,1 +1,1 @@
--s10 -e20 input
+./slepg -s40 -e45 input output
